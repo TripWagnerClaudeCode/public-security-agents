@@ -1,0 +1,9 @@
+# Default gitleaks rules, minus vendored dependency trees (their test fixtures are noise).
+[extend]
+useDefault = true
+
+[allowlist]
+description = "vendored dependencies and caches"
+paths = [
+  '''(^|/)(\.venv|venv|node_modules|\.ruff_cache|\.pytest_cache|__pycache__|\.mypy_cache)/''',
+]

@@ -1,0 +1,36 @@
+# Head-of-Security scope. ONLY the owner edits this file. Agents must never modify it.
+# Copy to config/scope.yaml (git-ignored) and fill it in. Gatekeeper's guard pushes an alert on every change.
+#
+# Paths: Windows (C:\...), Linux/macOS (/home/you/...), or a WSL distro's files (\\wsl.localhost\<distro>\home\you\...).
+owner: you
+scope: this-machine-only
+
+# Network targets nuclei may touch. Only addresses of THIS machine (loopback, its LAN address, its tailnet IP).
+network_allowlist:
+  - 127.0.0.1
+  # - 192.168.1.50     # this machine's LAN address (what the home network sees)
+  # - 100.64.0.10      # this machine's Tailscale address
+
+# Code repos to audit (read-only): secrets in files + history, dependency CVEs, code review with the playbooks.
+repos:
+  - C:\Users\you\projects\my-app
+  # - \\wsl.localhost\Ubuntu-24.04\home\you\projects\my-bot
+
+# Backups and retired copies: secrets/history scan only (never restore or delete).
+backups: []
+
+# What actually runs (deployed, not git): dependency + secret scan.
+deployed: []
+  # - C:\Users\you\.gatekeeper\service
+
+# Single files to read (no scanner writes or fetches), e.g. Claude Code settings with hooks.
+files: []
+  # - C:\Users\you\.claude\settings.json
+
+# Secret stores: check owner-only permissions, sync/backup exposure and key NAMES only. Never scan values.
+secret_stores: []
+  # - C:\Users\you\.gatekeeper
+
+# GitHub repos and their visibility (agents flag any public repo that isn't listed here).
+public_on_github: []
+private_on_github: []

@@ -1,0 +1,12 @@
+runs/
+**/.venv/
+__pycache__/
+.pytest_cache/
+*.quarantined
+.superpowers/
+.claude/settings.local.json
+repos/
+
+# Your own scope (copy config/scope.example.yaml) and run output stay local
+config/scope.yaml
+*.yar
